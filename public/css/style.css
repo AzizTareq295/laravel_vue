@@ -13,7 +13,8 @@
     overflow: hidden;
 }
 .product-image img{
-    width: 160px;
+    width: 100%;
+    height: 100%;
     display: inline-block;
 }
 .product-add-to-cart{

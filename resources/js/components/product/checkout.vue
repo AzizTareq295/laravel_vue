@@ -86,7 +86,6 @@ export default {
     computed:{
         getAllCart()
         {
-            
             return this.$store.getters.allcarts;
         },
         getTotalAmount()

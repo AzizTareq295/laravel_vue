@@ -69,8 +69,17 @@ export default {
                 image: this.product.product_image
             })
             .then((res) => {
-                console.log(res.data);
+                this.product.product_name = '',
+                this.product.product_price = '',
+                this.product.product_qty = '',
+                this.product.product_image = '',
 
+                swal({
+                    title: "Product Uploaded",
+                    text: "I will disappear.",
+                    timer: 1000,
+                    showConfirmButton: true
+                });
             })
             .catch((err) => {
                 console.log(err);

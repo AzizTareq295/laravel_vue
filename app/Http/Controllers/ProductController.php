@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -51,7 +52,6 @@ class ProductController extends Controller
 
         $path = public_path('images')."/".$fileName;
 
-
         $request['product_image'] = $fileName;
 
 
@@ -70,7 +70,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $data = Product::find($product);
+        
+        return response()->json(['product'=>$data],200);
     }
 
     /**
@@ -81,7 +83,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        
     }
 
     /**
@@ -93,7 +95,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
     }
 
     /**
@@ -104,7 +106,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $file_path = public_path("images/".$product->product_image);
+
+        unlink($file_path);
+
+        $product->delete();
+
+        $all_products = Product::all();
+
+        return response()->json(['products'=>$all_products]);
     }
 
     public function addTocart($id){

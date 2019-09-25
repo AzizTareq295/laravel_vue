@@ -85,7 +85,6 @@
            },
            getAllCart()
            {
-                
                 return this.$store.getters.allcarts;
            },
            getTotalAmount()
